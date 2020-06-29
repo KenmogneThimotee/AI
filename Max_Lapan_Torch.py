@@ -1,9 +1,14 @@
 import torch.nn as nn
 import torch
+import sys
 
+s = nn.Sequential(
+    nn.Linear(3, 4),
+    nn.ReLU(inplace=True),
+    nn.Linear(4, 5),
+    nn.ReLU(inplace=True),
+    nn.Dropout(p=0.3),
+    nn.Softmax(dim=1)
+)
 
-L = nn.Linear(2, 5, bias=True)
-
-v = torch.FloatTensor([3, 5])
-
-print(L(v))
+print(s(torch.FloatTensor([[3, 5, 20]])))
